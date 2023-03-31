@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ProyectoControlNotas.Models"
+             xmlns:viewmodels="clr-namespace:ProyectoControlNotas.ViewModels"
+             x:DataType="viewmodels:ListadoEstudiantesViewModels"
+             Title="{Binding Titulo}"
+             x:Class="ProyectoControlNotas.MainPage">
+
+    <VerticalStackLayout
+        Padding="10"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="20">
+        <Image
+            Source="espacio_logo.png"
+            VerticalOptions="Center"
+            HeightRequest="160"/>
+        <Label Text="Bienvenido al sitio de su Institución Educativa"
+               TextColor="Black"
+               FontSize="32"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold"/>
+        <Button Text="Ir al Listado de Docentes"
+                BackgroundColor="DarkOrange"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Clicked="SeleccionDocente"/>
+        <Button Text="Ir al Listado de Estudiantes"
+                BackgroundColor="DarkOrange"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Clicked="SeleccionEstudiante"/>
+    </VerticalStackLayout>
+</ContentPage>

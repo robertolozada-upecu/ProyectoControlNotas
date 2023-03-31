@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ProyectoControlNotas.Models"
+             xmlns:viewModels="clr-namespace:ProyectoControlNotas.ViewModels"
+             x:DataType="viewModels:ListadoEstudiantesViewModels"
+             x:Class="ProyectoControlNotas.Views.ListadoEstudiantesPage"
+             Title="{Binding Titulo}">
+
+    <StackLayout Margin="10">
+        <Label  Text="Estudiantes registrados" FontAttributes="Bold" FontSize="24"/>
+        <Button Text="Agregar nuevo estudiante" BackgroundColor="DarkOrange" IsVisible="true" Command="{Binding AgregarEstudianteCommand}" HorizontalOptions="EndAndExpand" />
+
+        <CollectionView ItemsSource="{Binding Estudiantes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Estudiante">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Editar" IsVisible="True" IconImageSource="editar" BackgroundColor="Green"
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=EditarEstudianteCommand}"/>
+                                <SwipeItem Text="Borrar" IconImageSource="borrar" BackgroundColor="Red"
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=EliminarEstudianteCommand}"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <Frame Margin="10" Padding="10">
+                            <!--<RefreshView Grid.ColumnSpan="2"
+                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListadoEstudiantesViewModels},AncestorLevel=1}"
+                                                          CommandParameter="{Binding .}"
+                         IsRefreshing="{Binding EstaRefrescando}">-->
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="{Binding Nombres}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding Apellidos}" FontSize="18" FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Cedula}"/>
+                            </VerticalStackLayout>
+                            <!--<Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type Models:Estudiante}},Path=IrADetalleEstudianteCommand}"
+                                                  CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>-->
+                            <!--</RefreshView>-->
+                        </Frame>
+                    </SwipeView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+    <!--<ScrollView>
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*, Auto">
+            <RefreshView Grid.ColumnSpan="2"
+                         Command="{Binding ObtenerListaEstudiantesCommand}"
+                         IsRefreshing="{Binding EstaRefrescando}">
+
+                <CollectionView Grid.ColumnSpan="2" ItemsSource="{Binding Estudiantes}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Estudiante">
+                            <Frame HeightRequest="90">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListadoEstudiantesViewModels}}, Path=IrADetallesEstudianteCommand}" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout Padding="10" Spacing="5">
+                                    <Label Text="{Binding Cedula}"></Label>
+                                    <Label Text="{Binding NombreCompletoEstudiante}"></Label>
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+            <Button Text="Obtener estudiantes"
+                        Command="{Binding ObtenerListaEstudiantesCommand}"
+                        IsEnabled="{Binding NoEstaCargando}"
+                        Grid.Row="1"
+                        Grid.Column="0" >
+            </Button>
+        </Grid>
+    </ScrollView>-->
+</ContentPage>

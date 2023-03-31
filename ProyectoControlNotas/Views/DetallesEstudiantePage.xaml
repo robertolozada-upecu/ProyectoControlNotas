@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modelo="clr-namespace:ProyectoControlNotas.Models"
+             x:Class="ProyectoControlNotas.Views.DetallesEstudiantePage"
+             xmlns:viewModels="clr-namespace:ProyectoControlNotas.ViewModels"
+             x:DataType="viewModels:DetallesEstudianteViewModels"
+             Title="Detalle Estudiante">
+
+    <ScrollView>
+        <Grid ColumnSpacing="1" RowSpacing="1" Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Margin="10" Padding="10">
+                <VerticalStackLayout Grid.Row="0" Margin="9">
+                    <Label Text="Cédula de Identidad:" FontSize="Caption" FontAttributes="Bold"/>
+                    <Entry x:Name="xCedula" Placeholder="Ingrese el número de cédula" Text="{Binding DetalleEstudiante.Cedula}"/>
+                    <Label Text="Nombres:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry x:Name="xNombres" Placeholder="Ingrese los nombres" Text="{Binding DetalleEstudiante.Nombres}"/>
+                    <Label Text="Apellidos:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry x:Name="xApellidos" Placeholder="Ingrese los apellidos " Text="{Binding DetalleEstudiante.Apellidos}"/>
+                    <Label Text="Correo electrónico:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry x:Name="xCorreo" Placeholder="Ingrese el correo electrónico" Text="{Binding DetalleEstudiante.Correo}"/>
+                    <Label Text="Usuario:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry x:Name="xUsuario" Placeholder="Ingrese el usuario" Text="{Binding DetalleEstudiante.Usuario}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button x:Name="AgregarActualizarEstudiante" Text="Agregar/Actualizar Estudiante" BackgroundColor="DarkOrange" Grid.Row="1" IsEnabled="{Binding NoEstaCargando}" Margin="9"  Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DetallesEstudianteViewModels}},Path=AgregarActualizarEstudianteCommand}"
+                />
+            <Button Text="Cancelar" BackgroundColor="Green" Grid.Row="2" IsEnabled="{Binding NoEstaCargando}" Margin="9"
+                />
+        </Grid>
+    </ScrollView>
+</ContentPage>
