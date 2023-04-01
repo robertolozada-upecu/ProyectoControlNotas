@@ -26,23 +26,26 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<EstudianteApiService>(servicios => ActivatorUtilities.CreateInstance<EstudianteApiService>(servicios, pathDBEstudiante));
         builder.Services.AddSingleton<DocenteApiService>(servicios => ActivatorUtilities.CreateInstance<DocenteApiService>(servicios, pathDBDocente));
-        builder.Services.AddTransient<EstudianteApiService>();
-        builder.Services.AddTransient<DocenteApiService>();
-        builder.Services.AddTransient<LoginService>();
+        builder.Services.AddSingleton<EstudianteApiService>();
+        builder.Services.AddSingleton<DocenteApiService>();
+        builder.Services.AddSingleton<LoginService>();
 
         builder.Services.AddSingleton<ListadoEstudiantesViewModels>();
         builder.Services.AddSingleton<ListadoDocentesViewModels>();
         builder.Services.AddSingleton<InicioViewModel>();
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<LogoutViewModels>();
-        builder.Services.AddTransient<DetallesEstudianteViewModels>();
+        builder.Services.AddTransient<DetalleEstudianteViewModels>();
+        builder.Services.AddTransient<DetalleDocenteViewModels>();
 
         builder.Services.AddSingleton<LoginPage>();
         builder.Services.AddSingleton<LogoutPage>();
         builder.Services.AddSingleton<InicioPage>();
         builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddTransient<ListadoEstudiantesPage>();
-        builder.Services.AddTransient<DetallesEstudiantePage>();
+        builder.Services.AddSingleton<ListadoEstudiantesPage>();
+        builder.Services.AddTransient<DetalleEstudiantePage>();
+        builder.Services.AddSingleton<ListadoDocentesPage>();
+        builder.Services.AddTransient<DetallesDocentePage>();
 
         return builder.Build();
 	}

@@ -13,5 +13,6 @@ namespace ProyectoControlNotas.Models
 
         [Ignore]
         public string NombreCompletoEstudiante => $"{Nombres} {Apellidos}";
+
     }
 }

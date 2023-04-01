@@ -9,6 +9,14 @@ namespace ProyectoControlNotas.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(NoEstaCargando))]
         bool estaCargando;
+        [ObservableProperty]
+        bool opcionAgregar;
+        [ObservableProperty]
+        bool opcionEditar;
+        [ObservableProperty]
+        bool opcionBorrar;
+        [ObservableProperty]
+        bool opcionGuardar;
 
         public bool NoEstaCargando => !EstaCargando;
     }

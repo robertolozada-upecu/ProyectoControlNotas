@@ -13,7 +13,7 @@ public partial class MainPage : ContentPage
 
     private async void SeleccionDocente(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync($"{nameof(ListadoEstudiantesPage)}",true);
+		await Shell.Current.GoToAsync($"{nameof(ListadoDocentesPage)}",true);
 
     }
 

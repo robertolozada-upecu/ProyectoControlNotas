@@ -57,6 +57,8 @@
 	  <None Remove="Resources\Images\editar.png" />
 	  <None Remove="Resources\Images\espacio_logo.png" />
 	  <None Remove="Resources\Images\estudiante.png" />
+	  <None Remove="Resources\Images\hogar.png" />
+	  <None Remove="Resources\Images\hogar1.png" />
 	  <None Remove="Resources\Images\rfllig.png" />
 	</ItemGroup>
 
@@ -80,6 +82,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\InicioPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ListadoDocentesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ListadoEstudiantesPage.xaml">

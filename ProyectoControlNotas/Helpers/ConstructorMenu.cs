@@ -17,11 +17,17 @@ namespace ProyectoControlNotas.Helpers
             {
                 var ItemFlyout = new FlyoutItem()
                 {
-                    Title = "Administración estudiantes",
+                    Title = "Administración",
                     Route = nameof(MainPage),
                     FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
                     Items =
                     {
+                        new ShellContent
+                        {
+                            Icon = "hogar",
+                            Title = "Página principal",
+                            ContentTemplate = new DataTemplate(typeof(MainPage))
+                        },
                         new ShellContent
                         {
                             Icon = "estudiante",
@@ -32,7 +38,7 @@ namespace ProyectoControlNotas.Helpers
                         {
                             Icon = "docente",
                             Title = "Docentes",
-                            ContentTemplate = new DataTemplate(typeof(DetallesEstudiantePage))
+                            ContentTemplate = new DataTemplate(typeof(ListadoDocentesPage))
                         },
                     }
                 };
@@ -46,11 +52,17 @@ namespace ProyectoControlNotas.Helpers
             {
                 var ItemFlyout = new FlyoutItem()
                 {
-                    Title = "Listado estudiantes",
-                    Route = nameof(ListadoEstudiantesPage),
+                    Title = "Listado",
+                    Route = nameof(MainPage),
                     FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
                     Items =
                     {
+                        new ShellContent
+                        {
+                            Icon = "hogar",
+                            Title = "Página principal",
+                            ContentTemplate = new DataTemplate(typeof(MainPage))
+                        },
                         new ShellContent
                         {
                             Icon = "estudiante",
@@ -61,7 +73,7 @@ namespace ProyectoControlNotas.Helpers
                         {
                             Icon = "docente",
                             Title = "Docentes",
-                            ContentTemplate = new DataTemplate(typeof(MainPage))
+                            ContentTemplate = new DataTemplate(typeof(ListadoDocentesPage))
                         },
                     }
                 };
@@ -75,11 +87,17 @@ namespace ProyectoControlNotas.Helpers
             {
                 var ItemFlyout = new FlyoutItem()
                 {
-                    Title = "Listado estudiantes",
-                    Route = nameof(ListadoEstudiantesPage),
+                    Title = "Listado",
+                    Route = nameof(MainPage),
                     FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
                     Items =
                     {
+                        new ShellContent
+                        {
+                            Icon = "hogar",
+                            Title = "Página principal",
+                            ContentTemplate = new DataTemplate(typeof(MainPage))
+                        },
                         new ShellContent
                         {
                             Icon = "estudiante",
@@ -90,7 +108,7 @@ namespace ProyectoControlNotas.Helpers
                         {
                             Icon = "docente",
                             Title = "Docentes",
-                            ContentTemplate = new DataTemplate(typeof(MainPage))
+                            ContentTemplate = new DataTemplate(typeof(ListadoDocentesPage))
                         },
                     }
                 };
@@ -104,7 +122,7 @@ namespace ProyectoControlNotas.Helpers
             {
                 Title = "Cerrar Sesión",
                 Route = nameof(LogoutPage),
-                FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
                 Items =
                 {
                     new ShellContent

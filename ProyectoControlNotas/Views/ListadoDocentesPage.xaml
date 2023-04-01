@@ -3,27 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:ProyectoControlNotas.Models"
              xmlns:viewModels="clr-namespace:ProyectoControlNotas.ViewModels"
-             x:DataType="viewModels:ListadoEstudiantesViewModels"
-             x:Class="ProyectoControlNotas.Views.ListadoEstudiantesPage"
+             x:DataType="viewModels:ListadoDocentesViewModels"
+             x:Class="ProyectoControlNotas.Views.ListadoDocentesPage"
              Title="{Binding Titulo}">
-
+    
     <StackLayout Margin="10">
-        <Label  Text="Estudiantes registrados" FontAttributes="Bold" FontSize="24"/>
-        <Button Text="Agregar nuevo estudiante" BackgroundColor="DarkOrange" IsVisible="{Binding OpcionAgregar}" Command="{Binding AgregarEstudianteCommand}" HorizontalOptions="EndAndExpand" />
-        <RefreshView Grid.ColumnSpan="2" Command="{Binding ObtenerListaEstudiantesCommand}"
+        <Label  Text="Docentes registrados" FontAttributes="Bold" FontSize="24"/>
+        <Button Text="Agregar nuevo docente" BackgroundColor="DarkOrange" IsVisible="{Binding OpcionAgregar}" Command="{Binding AgregarDocenteCommand}" HorizontalOptions="EndAndExpand" />
+        <RefreshView Grid.ColumnSpan="2" Command="{Binding ObtenerListaDocentesCommand}"
                          IsRefreshing="{Binding EstaRefrescando}">
-            <CollectionView ItemsSource="{Binding Estudiantes}">
+            <CollectionView ItemsSource="{Binding Docentes}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Estudiante">
+                    <DataTemplate x:DataType="models:Docente">
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Editar" IsVisible="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=OpcionEditar}" IconImageSource="editar" BackgroundColor="Green"
+                                    <SwipeItem Text="Editar" IsVisible="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoDocentesViewModels}},Path=OpcionEditar}" IconImageSource="editar" BackgroundColor="Green"
                                            CommandParameter="{Binding .}" 
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=EditarEstudianteCommand}"/>
-                                    <SwipeItem Text="Borrar" IsVisible="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=OpcionBorrar}" IconImageSource="borrar" BackgroundColor="Red"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoDocentesViewModels}},Path=EditarDocenteCommand}"/>
+                                    <SwipeItem Text="Borrar" IsVisible="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoDocentesViewModels}},Path=OpcionBorrar}" IconImageSource="borrar" BackgroundColor="Red"
                                            CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=EliminarEstudianteCommand}"/>
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoDocentesViewModels}},Path=EliminarDocenteCommand}"/>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <Frame Margin="10" Padding="10">
@@ -36,7 +36,7 @@
                                 </VerticalStackLayout>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoEstudiantesViewModels}},Path=EditarEstudianteCommand}"/>
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ListadoDocentesViewModels}},Path=EditarDocenteCommand}"/>
                                 </Frame.GestureRecognizers>
                             </Frame>
                         </SwipeView>

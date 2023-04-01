@@ -2,17 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoControlNotas.Views.DetallesDocentePage"
-             Title="DetallesDocentePage">
-    
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Docente.EstudianteId, StringFormat='DocenteId: {0}'}" />
-        <Label
-            Text="{Binding Docente.NombresCompletos, StringFormat='Nombres: {0}'}" />
-        <Label
-            Text="{Binding Docente.Correo, StringFormat='Correo: {0}'}" />
-        <Label
-            Text="{Binding Docente.Usuario, StringFormat='Usuario: {0}'}" />
-    </VerticalStackLayout>
+             xmlns:modelo="clr-namespace:ProyectoControlNotas.Models"
+             xmlns:viewModels="clr-namespace:ProyectoControlNotas.ViewModels"
+             x:DataType="viewModels:DetalleDocenteViewModels"
+             Title="Detalle Docente">
+
+    <ScrollView>
+        <Grid ColumnSpacing="1" RowSpacing="1" Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Margin="10" Padding="10">
+                <VerticalStackLayout Grid.Row="0" Margin="9">
+                    <Label Text="Cédula de Identidad:" FontSize="Caption" FontAttributes="Bold"/>
+                    <Entry Placeholder="Ingrese el número de cédula" Text="{Binding DetalleDocente.Cedula}"/>
+                    <Label Text="Nombres:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry Placeholder="Ingrese los nombres" Text="{Binding DetalleDocente.Nombres}"/>
+                    <Label Text="Apellidos:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry Placeholder="Ingrese los apellidos " Text="{Binding DetalleDocente.Apellidos}"/>
+                    <Label Text="Correo electrónico:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry Placeholder="Ingrese el correo electrónico" Text="{Binding DetalleDocente.Correo}"/>
+                    <Label Text="Usuario:" FontSize="Caption" FontAttributes="Bold" Margin="0,20,0,0"/>
+                    <Entry Placeholder="Ingrese el usuario" Text="{Binding DetalleDocente.Usuario}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button x:Name="AgregarActualizarDocente" Text="Agregar/Actualizar Docente" BackgroundColor="DarkOrange" Grid.Row="1" IsVisible="{Binding OpcionEditar}" IsEnabled="{Binding NoEstaCargando}" Margin="9"  Command="{Binding AgregarActualizarDocenteCommand}"
+                />
+            <Button Text="Regresar" BackgroundColor="Green" Grid.Row="2" IsEnabled="{Binding NoEstaCargando}" Margin="9" Command="{Binding CancelarCommand}"
+                />
+        </Grid>
+    </ScrollView>
 </ContentPage>

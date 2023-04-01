@@ -2,11 +2,11 @@ using ProyectoControlNotas.ViewModels;
 
 namespace ProyectoControlNotas.Views;
 
-public partial class DetallesEstudiantePage : ContentPage
+public partial class DetalleEstudiantePage : ContentPage
 {
-	public DetallesEstudiantePage(DetallesEstudianteViewModels detallesEstudianteViewModels)
+	public DetalleEstudiantePage(DetalleEstudianteViewModels detalleEstudianteViewModels)
 	{
 		InitializeComponent();
-		BindingContext = detallesEstudianteViewModels;
+		BindingContext = detalleEstudianteViewModels;
 	}
 }

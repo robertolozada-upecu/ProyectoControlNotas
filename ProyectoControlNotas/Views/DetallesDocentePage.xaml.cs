@@ -4,9 +4,9 @@ namespace ProyectoControlNotas.Views;
 
 public partial class DetallesDocentePage : ContentPage
 {
-	public DetallesDocentePage(DetallesEstudianteViewModels detallesEstudianteViewModels)
+	public DetallesDocentePage(DetalleDocenteViewModels detalleDocenteViewModels)
 	{
 		InitializeComponent();
-		BindingContext = detallesEstudianteViewModels;
+		BindingContext = detalleDocenteViewModels;
 	}
 }

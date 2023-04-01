@@ -8,41 +8,50 @@ namespace ProyectoControlNotas.ViewModels
 {
     [QueryProperty(nameof(DetalleEstudiante), "DetalleEstudiante")]
 
-    public partial class DetallesEstudianteViewModels : BaseViewModels
+    public partial class DetalleEstudianteViewModels : BaseViewModels
     {
         [ObservableProperty]
         Estudiante detalleEstudiante;
         [ObservableProperty]
         bool estaRefrescando;
-        [ObservableProperty]
-        int identificador;
-        [ObservableProperty]
-        string cedula;
-        [ObservableProperty]
-        string nombres;
-        [ObservableProperty]
-        string apellidos;
-        [ObservableProperty]
-        string correo;
-        [ObservableProperty]
-        string usuario;
-
 
         private readonly EstudianteApiService _estudianteApiService;
-        public DetallesEstudianteViewModels(EstudianteApiService estudianteApiService)
+        public DetalleEstudianteViewModels(EstudianteApiService estudianteApiService)
         {
             _estudianteApiService = estudianteApiService;
+            var rol = App.InfoUsuario.Rol;
+            if (rol == "Administrador")
+            {
+                OpcionAgregar = true;
+                OpcionEditar = true;
+                OpcionBorrar = true;
+                OpcionGuardar = true;
+            }
+            else if (rol.Equals("Coordinador"))
+            {
+                OpcionAgregar = false;
+                OpcionEditar = true;
+                OpcionBorrar = false;
+                OpcionGuardar = true;
+            }
+            else
+            {
+                OpcionAgregar = false;
+                OpcionEditar = false;
+                OpcionBorrar = false;
+                OpcionGuardar = false;
+            }
         }
 
         [RelayCommand]
         async Task AgregarActualizarEstudiante()
         {
-            //if (string.IsNullOrEmpty(DetalleEstudiante.Cedula) || string.IsNullOrEmpty(DetalleEstudiante.Nombres) || string.IsNullOrEmpty(DetalleEstudiante.Apellidos) || string.IsNullOrEmpty(DetalleEstudiante.Correo) || string.IsNullOrEmpty(DetalleEstudiante.Usuario))
-            //{
-            //    await Shell.Current.DisplayAlert("Error", "Por favor ingrese valores válidos", "Ok");
-            //    return;
-            //}
-            if(DetalleEstudiante.Id != 0)
+            if (string.IsNullOrEmpty(DetalleEstudiante.Cedula) || string.IsNullOrEmpty(DetalleEstudiante.Nombres) || string.IsNullOrEmpty(DetalleEstudiante.Apellidos) || string.IsNullOrEmpty(DetalleEstudiante.Correo) || string.IsNullOrEmpty(DetalleEstudiante.Usuario))
+            {
+                await Shell.Current.DisplayAlert("Error", "Por favor ingrese valores válidos", "Ok");
+                return;
+            }
+            if (DetalleEstudiante.Id != 0)
             {
                 await _estudianteApiService.ActualizarEstudiante(DetalleEstudiante.Id, DetalleEstudiante);
                 await Shell.Current.DisplayAlert("Info", _estudianteApiService.MensajeEstado, "Ok");
@@ -51,27 +60,21 @@ namespace ProyectoControlNotas.ViewModels
             {
                 await _estudianteApiService.AgregarEstudiante(new Estudiante
                 {
-                    Cedula = Cedula,
-                    Nombres = Nombres,
-                    Apellidos = Apellidos,
-                    Correo = Correo,
-                    Usuario = Usuario,
-
-
+                    Cedula = DetalleEstudiante.Cedula,
+                    Nombres = DetalleEstudiante.Nombres,
+                    Apellidos = DetalleEstudiante.Apellidos,
+                    Correo = DetalleEstudiante.Correo,
+                    Usuario = DetalleEstudiante.Usuario,
                 });
                 await Shell.Current.DisplayAlert("Info", _estudianteApiService.MensajeEstado, "Ok");
             }
             await Shell.Current.GoToAsync(nameof(ListadoEstudiantesPage), true);
         }
 
-        //[RelayCommand]
-        //async Task LimpiarFormulario()
-        //{
-        //    Id = 0;
-        //    Cedula = string.Empty;
-        //    Nombres = string.Empty;
-        //    Identificador = 0;
-        //    await ObtenerListaEstudiantes();
-        //}
+        [RelayCommand]
+        async Task Cancelar()
+        {
+            await Shell.Current.GoToAsync(nameof(ListadoEstudiantesPage), true);
+        }
     }
 }

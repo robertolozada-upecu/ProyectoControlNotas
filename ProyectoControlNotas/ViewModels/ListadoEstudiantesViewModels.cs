@@ -12,8 +12,6 @@ namespace ProyectoControlNotas.ViewModels
     {
         [ObservableProperty]
         bool estaRefrescando;
-        [ObservableProperty]
-        int identificador;
 
         private readonly EstudianteApiService _estudianteApiService;
 
@@ -23,7 +21,28 @@ namespace ProyectoControlNotas.ViewModels
         {
             Titulo = "Listado de estudiantes";
             _estudianteApiService = estudianteApiService;
-            _ = ObtenerListaEstudiantes();
+            var rol = App.InfoUsuario.Rol;
+            if (rol == "Administrador")
+            {
+                OpcionAgregar = true;
+                OpcionEditar = true;
+                OpcionBorrar = true;
+                OpcionGuardar = true;
+            }
+            else if (rol.Equals("Coordinador"))
+            {
+                OpcionAgregar = false;
+                OpcionEditar = true;
+                OpcionBorrar = false;
+                OpcionGuardar = true;
+            }
+            else
+            {
+                OpcionAgregar = false;
+                OpcionEditar = false;
+                OpcionBorrar = false;
+                OpcionGuardar = false;
+            }
         }
 
         [RelayCommand]
@@ -57,7 +76,10 @@ namespace ProyectoControlNotas.ViewModels
         [RelayCommand]
         public async Task AgregarEstudiante()
         {
-            await AppShell.Current.GoToAsync(nameof(DetallesEstudiantePage));
+            var datosEstudiante = new Dictionary<string, object>();
+            var estudiante = new Estudiante();
+            datosEstudiante.Add("DetalleEstudiante", estudiante);
+            await AppShell.Current.GoToAsync(nameof(DetalleEstudiantePage), datosEstudiante);
         }
 
         [RelayCommand]
@@ -81,7 +103,7 @@ namespace ProyectoControlNotas.ViewModels
 
             var datosEstudiante = new Dictionary<string, object>();
             datosEstudiante.Add("DetalleEstudiante", estudiante);
-            await AppShell.Current.GoToAsync(nameof(DetallesEstudiantePage), datosEstudiante);
+            await AppShell.Current.GoToAsync(nameof(DetalleEstudiantePage), datosEstudiante);
         }
     }
 }
