@@ -30,16 +30,16 @@ public static class MauiProgram
         builder.Services.AddSingleton<DocenteApiService>();
         builder.Services.AddSingleton<LoginService>();
 
-        builder.Services.AddSingleton<ListadoEstudiantesViewModels>();
-        builder.Services.AddSingleton<ListadoDocentesViewModels>();
+        builder.Services.AddTransient<ListadoEstudiantesViewModels>();
+        builder.Services.AddTransient<ListadoDocentesViewModels>();
         builder.Services.AddSingleton<InicioViewModel>();
         builder.Services.AddSingleton<LoginViewModel>();
-        builder.Services.AddSingleton<LogoutViewModels>();
+        builder.Services.AddTransient<LogoutViewModels>();
         builder.Services.AddTransient<DetalleEstudianteViewModels>();
         builder.Services.AddTransient<DetalleDocenteViewModels>();
 
         builder.Services.AddSingleton<LoginPage>();
-        builder.Services.AddSingleton<LogoutPage>();
+        builder.Services.AddTransient<LogoutPage>();
         builder.Services.AddSingleton<InicioPage>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<ListadoEstudiantesPage>();
